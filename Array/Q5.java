@@ -42,19 +42,19 @@ public class Q5 {
 		mergesort(a,0,n-1);
 		
 		displayarray(a,n);
+		sc.close();
 		
 	}
 
-	private static int[] mergesort(int[] a,int l ,int r) {
+	private static void mergesort(int[] a,int l ,int r) {
 		// TODO Auto-generated method stub
 		if(l<r)
 		{
-			int mid=(l+r)/2;
-			mergesort(a,0,mid);
+			int mid=l+(r-l)/2;
+			mergesort(a,l,mid);
 			mergesort(a,mid+1,r);
-			merge(a,0,mid,r);
+			merge(a,l,mid,r);
 		}
-		return a;
 	}
 
 	private static void merge(int[] a, int l, int m, int r) {
@@ -62,11 +62,13 @@ public class Q5 {
 		int n2=r-m;
 		int[] left=new int[n1];
 		int[] right=new int[n2];
-		int i=0,j=0,k=l;
-		for (i = 0; i < n1; i++)
+		
+		for (int i = 0; i < n1; i++)
             left[i] = a[l + i];
-        for (j = 0; j < n2; j++)
+        for (int j = 0; j < n2; j++)
             right[j] = a[m + 1 + j];
+        
+        int i=0,j=0,k=l;
 		while(i<n1 && left[i]<0)
 		{
 			a[k++]=left[i++];
@@ -75,13 +77,11 @@ public class Q5 {
 		{
 			a[k++]=right[j++];
 		}
-		i=0;
-		j=0;
-		while(i<n1 && left[i]>0)
+		while(i<n1 )
 		{
 			a[k++]=left[i++];
 		}
-		while(j<n2 && right[j]>0)
+		while(j<n2 )
 		{
 			a[k++]=right[j++];
 		}
